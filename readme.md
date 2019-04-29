@@ -33,6 +33,11 @@ $ gibp --help
     $ gibp -b master
 ```
 
+## Related
+
+- [git-is-branch-protected](https://github.com/tobiasbueschel/git-is-branch-protected) - API for this CLI.
+- [git-push-pr](https://github.com/tobiasbueschel/git-push-pr) - Push and open pull request in your default browser.
+
 ## License
 
 MIT © [Tobias Büschel](https://github.com/tobiasbueschel)
