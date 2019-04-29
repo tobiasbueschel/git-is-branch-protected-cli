@@ -1,0 +1,105 @@
+{
+  "name": "git-is-branch-protected-cli",
+  "version": "0.0.0-development",
+  "description": "CLI to check whether a Git branch is protected",
+  "license": "MIT",
+  "repository": "https://github.com/tobiasbueschel/git-is-branch-protected-cli",
+  "author": "https://github.com/tobiasbueschel",
+  "bugs": {
+    "url": "https://github.com/tobiasbueschel/git-is-branch-protected-cli/issues"
+  },
+  "bin": {
+    "gibp": "cli.js"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "cli.js"
+  ],
+  "keywords": [
+    "git",
+    "branch",
+    "branches"
+  ],
+  "scripts": {
+    "lint": "eslint '*.js'",
+    "test": "jest index.test.js",
+    "test:watch": "jest --watch index.test.js",
+    "test:coverage": "jest --coverage",
+    "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "git-is-branch-protected": "^1.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^7.5.0",
+    "@commitlint/travis-cli": "^7.5.2",
+    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/git": "^7.0.8",
+    "commitlint": "^7.5.2",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "git-branch": "^2.0.1",
+    "husky": "^2.0.0",
+    "jest": "^24.7.1",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
+    "semantic-release": "^15.13.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:prettier/recommended"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017
+    },
+    "env": {
+      "es6": true
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "printWidth": 140
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "message": "chore: release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  }
+}
