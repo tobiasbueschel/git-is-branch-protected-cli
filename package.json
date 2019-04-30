@@ -15,7 +15,8 @@
     "node": ">=8"
   },
   "files": [
-    "cli.js"
+    "cli.js",
+    "index.js"
   ],
   "keywords": [
     "git",
