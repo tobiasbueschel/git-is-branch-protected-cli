@@ -2,7 +2,7 @@
 'use strict'
 
 const meow = require('meow')
-const gitIsBranchProtectedCli = require('.')
+const gitIsBranchProtectedCli = require('./')
 
 const cli = meow(
   `

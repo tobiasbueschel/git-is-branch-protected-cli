@@ -30,7 +30,8 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "git-is-branch-protected": "^1.0.0"
+    "git-is-branch-protected": "^1.0.0",
+    "meow": "^5.0.0"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^7.5.0",
