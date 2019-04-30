@@ -1,6 +1,6 @@
 {
   "name": "git-is-branch-protected-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI to check whether a Git branch is protected",
   "license": "MIT",
   "repository": "https://github.com/tobiasbueschel/git-is-branch-protected-cli",
