@@ -33,6 +33,31 @@ $ gibp --help
     $ gibp -b master
 ```
 
+## Why use this tool?
+
+It's easy to forget setting up branch protection on GitHub, GitLab or any other Git hosting service, and before you know it, you've pushed to `master` during your late night coding session. Or perhaps you have scripted automatic updates that will push and create pull requests to several repositories at once and want to ensure you're not pushing to the wrong branch?
+
+This tool comes to the rescue and through [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) and [husky](https://github.com/typicode/husky), prevents you from accidentally pushing to your remote `master` or `develop` branch. All you need to do is install `husky` and `git-is-branch-protected-cli` to your project:
+
+```bash
+npm install husky --save-dev
+```
+
+and add the following to your `package.json`:
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-push": "gibp",
+      "...": "..."
+    }
+  }
+}
+```
+
+After this setup, the `pre-push` hook will fail if you are on a protected branch as `gibp` returns exit code `1`, thereby preventing you from accidentally pushing to the wrong remote branch.
+
 ## Related
 
 - [git-is-branch-protected](https://github.com/tobiasbueschel/git-is-branch-protected) - API for this CLI.
