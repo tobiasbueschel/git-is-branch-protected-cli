@@ -12,14 +12,14 @@
 
 ## Install
 
-```
-$ npm install --global git-is-branch-protected-cli
+```sh
+npm install --global git-is-branch-protected-cli
 ```
 
 ## Usage
 
-```
-$ gibp --help
+```sh
+gibp --help
 
   Usage
     gibp [options]
@@ -29,34 +29,47 @@ $ gibp --help
     --silent, -s Do not show any error messages
 
   Examples
-    $ gibp -b "master, develop"
-    $ gibp -b master
+    gibp -b "master, develop, another-important-branch"
+    gibp -b master
 ```
 
 ## Why use this tool?
 
 It's easy to forget setting up branch protection on GitHub, GitLab or any other Git hosting service, and before you know it, you've pushed to `master` during your late night coding session. Or perhaps you have scripted automatic updates that will push and create pull requests to several repositories at once and want to ensure you're not pushing to the wrong branch?
 
-This tool comes to the rescue and through [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) and [husky](https://github.com/typicode/husky), prevents you from accidentally pushing to your remote `master` or `develop` branch. All you need to do is install `husky` and `git-is-branch-protected-cli` to your project:
+This tool comes to the rescue and with the help of [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) and [husky](https://github.com/typicode/husky) prevents you from accidentally pushing to your remote `master` or `develop` branch. All you need to do is install `husky` and `git-is-branch-protected-cli` to your project:
 
-```bash
-npm install husky --save-dev
+```sh
+npm install husky git-is-branch-protected-cli --save-dev
 ```
 
-and add the following to your `package.json`:
+and add the following to your `package.json` to protect anyone from commiting to `master` or `develop`:
 
 ```json
 {
   "husky": {
     "hooks": {
-      "pre-push": "gibp",
-      "...": "..."
+      "pre-push": "gibp"
+    }
+  }
+}
+```
+
+you can also instruct `gipb` to project other branches using the following configuration as an example:
+
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-push": "gibp -b \"master, develop, foo-bar\""
     }
   }
 }
 ```
 
 After this setup, the `pre-push` hook will fail if you are on a protected branch as `gibp` returns exit code `1`, thereby preventing you from accidentally pushing to the wrong remote branch.
+
+:warning: This is not a bulletproof solution as someone could still write to the branch using `--no-verify`. Therefore, please also consider setting up server-side branch protection.
 
 ## Related
 

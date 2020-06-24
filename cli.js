@@ -14,8 +14,8 @@ const cli = meow(
     --silent, -s Do not show any error messages
 
 	Examples
-	  $ gibp -b "master, develop"
-	  $ gibp -b master
+	  gibp -b "master, develop"
+	  gibp -b master
 `,
   {
     flags: {
