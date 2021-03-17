@@ -10,11 +10,11 @@ const cli = meow(
 	  gibp [options]
 
 	Options
-    --protected-branches, -b Specify protected branches [Default: master, develop]
+    --protected-branches, -b Specify protected branches [Default: master, main, develop]
     --silent, -s Do not show any error messages
 
 	Examples
-	  gibp -b "master, develop"
+	  gibp -b "master, main, develop"
 	  gibp -b master
 `,
   {
@@ -22,7 +22,7 @@ const cli = meow(
       branches: {
         type: 'string',
         alias: 'b',
-        default: 'master, develop'
+        default: 'master, main, develop'
       },
       silent: {
         type: 'boolean',

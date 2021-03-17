@@ -10,7 +10,7 @@ beforeEach(() => {
   global.console.error = jest.fn()
 
   options = {
-    branches: 'master, develop',
+    branches: 'master, main, develop',
     silent: true
   }
 })
@@ -26,6 +26,13 @@ it('should throw if "branches" is not a string', async () => {
 
 it('should exit with 1 if currently on "master" and no branches are passed in', async () => {
   branch.mockReturnValue(Promise.resolve('master'))
+
+  await gitIsBranchProtectedCli(options)
+  expect(process.exit).toHaveBeenCalledWith(1)
+})
+
+it('should exit with 1 if currently on "main" and no branches are passed in', async () => {
+  branch.mockReturnValue(Promise.resolve('main'))
 
   await gitIsBranchProtectedCli(options)
   expect(process.exit).toHaveBeenCalledWith(1)

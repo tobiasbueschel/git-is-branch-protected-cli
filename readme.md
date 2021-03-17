@@ -25,11 +25,11 @@ gibp --help
     gibp [options]
 
   Options
-    --protected-branches, -b Specify protected branches [Default: master, develop]
+    --protected-branches, -b Specify protected branches [Default: master, main, develop]
     --silent, -s Do not show any error messages
 
   Examples
-    gibp -b "master, develop, another-important-branch"
+    gibp -b "master, main, develop, another-important-branch"
     gibp -b master
 ```
 
@@ -37,13 +37,13 @@ gibp --help
 
 It's easy to forget setting up branch protection on GitHub, GitLab or any other Git hosting service, and before you know it, you've pushed to `master` during your late night coding session. Or perhaps you have scripted automatic updates that will push and create pull requests to several repositories at once and want to ensure you're not pushing to the wrong branch?
 
-This tool comes to the rescue and with the help of [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) and [husky](https://github.com/typicode/husky) prevents you from accidentally pushing to your remote `master` or `develop` branch. All you need to do is install `husky` and `git-is-branch-protected-cli` to your project:
+This tool comes to the rescue and with the help of [Git Hooks](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) and [husky](https://github.com/typicode/husky) prevents you from accidentally pushing to your remote `master`, `main` or `develop` branch. All you need to do is install `husky` and `git-is-branch-protected-cli` to your project:
 
 ```sh
 npm install husky git-is-branch-protected-cli --save-dev
 ```
 
-and add the following to your `package.json` to protect anyone from commiting to `master` or `develop`:
+and add the following to your `package.json` to protect anyone from commiting to `master`, `main`, or `develop`:
 
 ```json
 {
@@ -61,7 +61,7 @@ you can also instruct `gipb` to project other branches using the following confi
 {
   "husky": {
     "hooks": {
-      "pre-push": "gibp -b \"master, develop, foo-bar\""
+      "pre-push": "gibp -b \"master, main, develop, foo-bar\""
     }
   }
 }
